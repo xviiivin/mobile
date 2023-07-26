@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.20.0
   '@types/react': ~18.2.14
   expo: ~49.0.5
+  expo-asset: ^8.10.1
   expo-status-bar: ~1.6.0
   pnpm: ^8.6.10
   react: 18.2.0
@@ -13,6 +14,7 @@ specifiers:
 dependencies:
   '@types/react': 18.2.16
   expo: 49.0.5_@babel+core@7.22.9
+  expo-asset: 8.10.1_expo@49.0.5
   expo-status-bar: 1.6.0
   pnpm: 8.6.10
   react: 18.2.0
