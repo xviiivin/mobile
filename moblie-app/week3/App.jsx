@@ -6,8 +6,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        {/* <Home /> */}
-        <SecPage />
+        <Home />
+        {/* <SecPage /> */}
       </ScrollView>
     </View>
   );
