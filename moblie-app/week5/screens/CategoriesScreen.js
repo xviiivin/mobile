@@ -16,7 +16,7 @@ import CategoryGridTile from "../components/CategoryGridTile";
 
 // const MealsNavigator = createNativeStackNavigator();
 
-const CategoriesScreen = (MealsNavigator) => {
+const CategoriesScreen = ({ navigation }) => {
   const renderGridItem = (itemData) => {
     return (
       // console.log(itemData)
@@ -24,7 +24,13 @@ const CategoriesScreen = (MealsNavigator) => {
         title={itemData.item.title}
         color={itemData.item.color}
         onSelect={() => {
-          MealsNavigator.navigate("CategoryMealsScreen", { prev: "CategoryMealsScreen", id: 1 })}}
+          {
+            navigation.navigate("s2", {
+              categoryid: itemData.item.id,
+              categoryTitle: itemData.item.title,
+            });
+          }
+        }}
       />
     );
   };
@@ -39,7 +45,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#4a148c",
   },
 });
 

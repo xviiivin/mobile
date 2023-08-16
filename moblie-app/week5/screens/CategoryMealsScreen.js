@@ -9,9 +9,7 @@ import {
 } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import MealItemr from "../components/Mealltem";
-const CategoryMealsScreen = (route) => {
-  const {prev, id} = route.params;
-
+const CategoryMealsScreen = ({route, navigation}) => {
   const renderMealItem = (itemData) => {
     return (
       // console.log(itemData)
@@ -22,13 +20,18 @@ const CategoryMealsScreen = (route) => {
         affordability={itemData.item.affordability}
         image={itemData.item.imageUrl}
         onSelectMeal={() => {
-          // เขียนโค้ดเพิ่ม
+          {
+            navigation.navigate("s3", {
+              titledish: itemData.item.title,
+              step:itemData.item.steps
+            });
+          }
         }}
       />
     );
   };
   // const catId = ...รับข้อมูล id ของประเภทอาหาร...
-  const catId = 1;
+  const catId = route.params.categoryid
   const displayedMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
@@ -37,7 +40,7 @@ const CategoryMealsScreen = (route) => {
     <View style={styles.screen}>
       <FlatList
         style={{ width: "100%" }}
-        data={MEALS}
+        data={displayedMeals}
         renderItem={renderMealItem}
       />
     </View>

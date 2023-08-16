@@ -13,19 +13,35 @@ export default function App() {
   return (
     <NavigationContainer>
       <MealsNavigator.Navigator
-        initialRouteName="Home page"
+        initialRouteName="idk"
         screenOptions={{
           headerStyle: { backgroundColor: "#4a148c" },
           headerTintColor: "#fff",
         }}
       >
-        <MealsNavigator.Screen name="Home page" component={CategoriesScreen} />
-        <MealsNavigator.Screen name="Menu" component={CategoryMealsScreen} />
-        <MealsNavigator.Screen name="S3" component={MealDetailScreen} />
+        <MealsNavigator.Screen
+          name="s1"
+          component={CategoriesScreen}
+          options={{
+            title: "Meal Categories",
+          }}
+        />
+        <MealsNavigator.Screen
+          name="s2"
+          component={CategoryMealsScreen}
+          options={{
+            title: "Menu",
+          }}
+        />
+        <MealsNavigator.Screen
+          name="s3"
+          component={MealDetailScreen}
+          options={{
+            title: "Finish",
+          }}
+        />
       </MealsNavigator.Navigator>
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});
