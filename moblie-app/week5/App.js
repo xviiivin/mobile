@@ -36,9 +36,9 @@ export default function App() {
         <MealsNavigator.Screen
           name="s3"
           component={MealDetailScreen}
-          options={{
-            title: "Finish",
-          }}
+          options={({route})=>({
+            title: route.params.titledish
+          })}
         />
       </MealsNavigator.Navigator>
     </NavigationContainer>
