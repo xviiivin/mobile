@@ -10,24 +10,9 @@ const Screen1 = ({ route }) => {
   const [studentId, setStudentId] = useState(route.params?.studentId || "");
   const [name, setName] = useState(route.params?.name || "");
   const [gpa, setGpa] = useState(route.params?.gpa || "");
+  const [documentId, setDocumentId] = useState(route.params?.key || "");
 
-  const inputValueUpdate = (val, prop) => {
-    switch (prop) {
-      case "studentId":
-        setStudentId(val);
-        break;
-      case "name":
-        setName(val);
-        break;
-      case "gpa":
-        setGpa(val);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const storeSubject = () => {
+  const storeOrUpdateSubject = () => {
     subjCollection
       .add({
         studentId,
@@ -35,61 +20,34 @@ const Screen1 = ({ route }) => {
         gpa,
       })
       .then((res) => {
-        setStudentId("");
-        setName("");
-        setGpa("");
+        setDocumentId(res.id);
         Alert.alert("Student added successfully");
-      });
-  };
-  const updateSubject = () => {
-    const updateSubjDoc = firebase
-      .firestore()
-      .collection("student")
-      .doc(this.state.key);
-    updateSubjDoc
-      .set({
-        studentId: this.state.studentId,
-        name: this.state.name,
-        gpa: this.state.gpa,
       })
-      .then(() => {
-        Alert.alert("Update");
+      .catch((error) => {
+        console.error("Error adding student: ", error);
       });
   };
+
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Student ID"
-        value={studentId}
-        onChangeText={(val) => inputValueUpdate(val, "studentId")}
+        onChangeText={(value) => setStudentId(value)}
       />
       <TextInput
         style={styles.input}
         placeholder="Name"
-        value={name}
-        onChangeText={(val) => inputValueUpdate(val, "name")}
+        onChangeText={(value) => setName(value)}
       />
       <TextInput
         style={styles.input}
         placeholder="GPA"
-        value={gpa}
-        onChangeText={(val) => inputValueUpdate(val, "gpa")}
+        onChangeText={(value) => setGpa(value)}
       />
 
-      <Button title="Add Student" onPress={() => storeSubject()} />
-      <Button
-        title="Update Student"
-        onPress={() => {
-          this.updateSubject();
-        }}
-      />
-      <Button
-        title="Delete Student"
-        onPress={() => {
-          this.deleteSubject();
-        }}
-      />
+      <Button title={"Add Student"} onPress={() => storeOrUpdateSubject()} />
+
       <Button
         title="View Student"
         onPress={() => {

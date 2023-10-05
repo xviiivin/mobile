@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../storage/firebaseDB";
 import {
   View,
   Text,
   StyleSheet,
-  Button,
-  TextInput,
-  Alert,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
+import firebase from "../storage/firebaseDB";
 import { useNavigation } from "@react-navigation/native";
 
-const screen2 = () => {
+const Screen2 = () => {
   const [subjectList, setSubjectList] = useState([]);
-  const navigation = useNavigation();
-
   const subjCollection = firebase.firestore().collection("student");
+  const navigation = useNavigation();
 
   const getCollection = (querySnapshot) => {
     const allData = [];
@@ -34,30 +31,39 @@ const screen2 = () => {
   }, [subjCollection]);
 
   const handleSubjectPress = (subject) => {
-    navigation.navigate("Add Student", subject);
+    navigation.navigate("s3", {
+      subject: subject
+    });
+    console.log(subject);
   };
+
   return (
-    <View>
-      {subjectList.map((subject) => (
-        <TouchableOpacity
-          key={subject.key}
-          style={styles.input}
-          onPress={() => handleSubjectPress(subject)}
-        >
-          <Text>studentId: {subject.studentId}</Text>
-          <Text>Name: {subject.name}</Text>
-          <Text>Gpa: {subject.gpa}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+    <ScrollView style={{ padding: 20 }}>
+      <View>
+        {subjectList.map((subject) => (
+          <TouchableOpacity
+            key={subject.key}
+            style={styles.input}
+            onPress={() => handleSubjectPress(subject)}
+          >
+            <Text>Student ID: {subject.studentId}</Text>
+            <Text>Name: {subject.name}</Text>
+            <Text>GPA: {subject.gpa}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   input: {
     borderColor: "gray",
     borderWidth: 2,
     width: "100%",
+    padding: 10,
+    marginBottom: 10,
   },
 });
 
-export default screen2;
+export default Screen2;

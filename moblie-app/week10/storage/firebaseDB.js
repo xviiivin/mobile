@@ -1,13 +1,12 @@
 import * as firebase from "firebase/compat";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDKoFNLVcWOzUtsNPXLLcThqQ1Gslw2kWM",
-  authDomain: "mobile66-ch10-80fe0.firebaseapp.com",
-  projectId: "mobile66-ch10-80fe0",
-  storageBucket: "mobile66-ch10-80fe0.appspot.com",
-  messagingSenderId: "868374767120",
-  appId: "1:868374767120:web:91013628b5c0786f8b8c95",
-  measurementId: "G-3P8J7P496C",
+  apiKey: "AIzaSyDGU-H_VeMrMAoUhnikWFN0TkvcFSZRw4E",
+  authDomain: "moblie-week10.firebaseapp.com",
+  projectId: "moblie-week10",
+  storageBucket: "moblie-week10.appspot.com",
+  messagingSenderId: "105236330159",
+  appId: "1:105236330159:web:9404832255b23d5973865a"
 };
 
 firebase.initializeApp(firebaseConfig);
